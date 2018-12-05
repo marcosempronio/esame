@@ -1,0 +1,75 @@
+var list=[];
+var users=[];
+var usersList=[];
+var counter=0;
+exports.reset=function(){
+    list=[];
+}
+
+exports.insertToDo=function(name,description,completed,user){
+    if(user=="marco"||user=="jano"||user=="tano"){
+    list.push({
+        id:counter++, 
+        name: name,
+        description: description,
+        completed:completed ,
+        assignedTo: user
+    })}
+   
+return list;
+}
+
+exports.getUsers=function(){
+     users=["marco","jano","tano"];
+     return users;
+ }
+
+exports.deleteToDo=function(idDelete){
+    for(var i=0;i<list.length;i++){
+        if(list[i].id===idDelete){
+          
+             list.splice(i,1);
+        }
+    }
+  return list;
+}
+
+exports. modifyStatus=function(id,newValue){
+    for(var i=0;i<list.length;i++){
+                 if(list[i].id==id){
+                    list[i].completed==newValue;
+                
+                }
+
+    }
+    return list;
+ }
+
+exports.usersList=function(user){
+    
+    var j=0;
+    for(var i=0;i<list.length;i++){
+        if(list[i].assignedTo==user){
+           usersList[j]=list[i];
+           j++;
+        }
+       
+    }
+    return usersList;
+  }
+
+
+this.insertToDo("palesio","fatto cacca?",true,"marco");
+this.insertToDo("palesio","fatto soldi?",false,"jano");
+this.insertToDo("palesio","fatto pipi?",false,"tano");
+this.insertToDo("palesio","fatto tutto?",true,"jano");
+console.log ("lista","\n",list);
+
+this.deleteToDo(0);
+console.log ("lista dopo eliminazione baby","\n",list);
+
+this.modifyStatus(3, false);
+console.log("lista dopo aggiornamento true false..","\n",list);
+
+this.usersList("jano");
+console.log("lista per utente","\n",usersList);
